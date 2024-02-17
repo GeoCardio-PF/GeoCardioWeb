@@ -28,8 +28,8 @@ jobs:
         id: deploy
         run: |
           aws deploy create-deployment \
-            --application-name CodeAuto \
-            --deployment-group-name CodeAuto_Dep \
+            --application-name GeoCardioWeb \
+            --deployment-group-name GeoCardioWeb_group \
             --file-exists-behavior OVERWRITE\
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
