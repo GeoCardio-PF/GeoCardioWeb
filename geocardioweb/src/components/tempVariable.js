@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material'
 
+//Theme-ing the Temperature variable
 const theme = createTheme({
   components: {
     MuiTypography: {
@@ -48,6 +49,7 @@ const theme = createTheme({
     },
 });
 
+//Construction of Temperature component
 const tempVariable = () => {
   return (
     <Grid item xs={3} >

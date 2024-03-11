@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material'
 
+//Theme-ing the Pressure variable
 const theme = createTheme({
   components: {
     MuiTypography: {
@@ -34,6 +35,7 @@ const theme = createTheme({
   },
 });
 
+//Construction of Pressure component
 const presVariable = () => {
   return (
     <Grid item xs={3} >

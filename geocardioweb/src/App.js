@@ -8,7 +8,7 @@ import TempVariable from './components/tempVariable'
 import SatVariable from './components/satVariable.js';
 import PresVariable from './components/presVariable.js';
 
-
+//App rendering
 function App() {
   return (
     <div className='App'>
