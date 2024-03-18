@@ -48,10 +48,10 @@ const CardVariable = () => {
           </Box>
           <Box 
               sx={{
-                  display:'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-              }}
+                display:'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            }}
           >
             <Typography component='h2' sx={{display:{xs:'flex', md:'none', lg:'flex'}}}>
               80 lpm

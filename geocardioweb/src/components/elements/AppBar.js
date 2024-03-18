@@ -12,7 +12,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import imgavatar from './Avatar.jpg'
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const pages = ['Dashboard', 'Historial'];
 const settings = ['Profile', 'Dashboard', 'Logout'];
@@ -36,28 +37,49 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  const handleMenuItemClick = (setting) => () => {
+    if (setting === 'Logout') {
+      navigate('/SignIn');
+    } else if (setting === 'Dashboard') {
+      navigate('/Dashboard');
+    } else if (setting === 'Profile') {
+      navigate('/Profile')
+    }
+    handleCloseUserMenu();
+  };
+
+  const handleMenuItemClick2 = (page) => () => {
+    if (page === 'Dashboard') {
+      navigate('/Dashboard');
+    } else if (page === 'Historial') {
+      navigate('/Historics');
+    } 
+    handleCloseUserMenu();
+  };
+
+  const navigate = useNavigate();
+
   return (
     <AppBar position="static">
       <Container maxWidth="xxl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'Mulish',
-              fontWeight: 700,
-              letterSpacing: '.1rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            GeoCardio
-          </Typography>
+          <Link to="/Dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'Mulish',
+                fontWeight: 700,
+                letterSpacing: '.1rem',
+              }}
+            >
+              GeoCardio
+            </Typography>
+          </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -89,36 +111,38 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={handleMenuItemClick2(page)}>
                   <Typography textAlign="center" sx={{ fontFamily:'Mulish' }}>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'Mulish',
-              fontWeight: 700,
-              letterSpacing: '.1rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            GeoCardio
-          </Typography>
+          <Link to="/Dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href="#app-bar-with-responsive-menu"
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'Mulish',
+                fontWeight: 700,
+                letterSpacing: '.1rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              GeoCardio
+            </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={handleMenuItemClick2(page)}
                 sx={{ my: 2, color: 'white', display: 'block', fontFamily:'Mulish' }}
               >
                 {page}
@@ -129,7 +153,7 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src={imgavatar} />
+                <Avatar>OB</Avatar>
               </IconButton>
             </Tooltip>
             <Menu
@@ -149,7 +173,7 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={handleMenuItemClick(setting)}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

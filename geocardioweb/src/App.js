@@ -1,36 +1,29 @@
 import React from 'react';
-import './App.css';
-import Container from '@mui/material/Container'
-import AppBar from './components/AppBar.js'
-import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
-import CardVariable from './components/CardVariable.js';
-import TempVariable from './components/tempVariable'
-import SatVariable from './components/satVariable.js';
-import PresVariable from './components/presVariable.js';
+import './App.css'
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import Dashboard from './components/views/dashboard.js'
+import SignIn from './components/views/signin.js'
+import Root from './components/views/root.js'
+import SignUp from './components/views/signup.js'
+import Profile from './components/views/profile.js'
+import Historics from './components/views/historics.js'
+import 'leaflet/dist/leaflet.css';
 
-//App rendering
-function App() {
+//Routing views
+const router = createBrowserRouter(createRoutesFromElements(
+    <Route path="/" element={ <Root/> }>
+        <Route path="Dashboard" element={ <Dashboard/> }/>
+        <Route path="SignIn" element={ <SignIn/> }/>
+        <Route path="SignUp" element={ <SignUp/> }/>
+        <Route path="Profile" element={ <Profile/> }/>
+        <Route path="Historics" element={ <Historics/>}/>
+    </Route>
+  ));
+
+export default function App() {
   return (
-    <div className='App'>
-      <AppBar />
-      <Container sx={{ marginY: 3}} >
-        <Grid container spacing={2} sx={{display: { xs: 'none', md: 'flex' }}} >
-
-          <PresVariable />
-          <CardVariable />
-          <TempVariable />
-          <SatVariable />
-          
-        </Grid>
-        <Grid container spacing={2} sx={{display: { xs: 'block', md: 'none' }}}>
-          <PresVariable />
-          <CardVariable />
-          <TempVariable />
-          <SatVariable />
-        </Grid>
-      </Container>
-    </div>
+    <>
+      <RouterProvider router={router}/>
+    </>
   );
-}
-
-export default App;
+};
