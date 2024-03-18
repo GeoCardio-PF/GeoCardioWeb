@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './App.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import Dashboard from './components/views/dashboard.js'
@@ -27,3 +28,4 @@ export default function App() {
     </>
   );
 };
+
